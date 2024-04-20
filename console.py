@@ -135,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
             return
         new_instance = HBNBCommand.classes[cls_name]()
         for key, val in obj_arg.items():
-            if key not in restricted:
+            if key not in restricted and val is not None:
                 setattr(new_instance, key, val)
         storage.save()
         print(new_instance.id)
