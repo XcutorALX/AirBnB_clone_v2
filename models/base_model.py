@@ -42,3 +42,13 @@ class BaseModel:
         dictionary['created_at'] = self.created_at.isoformat()
         dictionary['updated_at'] = self.updated_at.isoformat()
         return dictionary
+    
+    @classmethod
+    def from_dict(cls, **kwargs):
+        """Convert dict into instance"""
+        new = cls()
+
+        for attr, val in kwargs.items():
+            if attr != '__class__':
+                setattr(new, attr, val)
+        return new
