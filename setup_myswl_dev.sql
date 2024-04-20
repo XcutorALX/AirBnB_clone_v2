@@ -2,7 +2,6 @@
 -- Create the database 
 CREATE DATABASE IF NOT EXISTS `hbnb_dev_db`;
 -- Uses the database
-USE `hbnb_dev_db`;
 -- Create the user
 CREATE USER IF NOT EXISTS 'hbnb_dev'@'localhost' IDENTIFIED BY 'hbnb_dev_pwd';
 -- Grant all privileges to the user
