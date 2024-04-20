@@ -6,6 +6,9 @@ import datetime
 from uuid import UUID
 import json
 import os
+import pep8
+import pycodestyle
+import inspect
 
 
 class test_basemodel(unittest.TestCase):

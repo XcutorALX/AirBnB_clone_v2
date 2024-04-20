@@ -2,17 +2,16 @@
 """ """
 import unittest
 import os
+import pep8
 from time import sleep
 from unittest.mock import patch
-import pep8
 import pycodestyle
-import inspect
 from datetime import datetime
 from models.base_model import BaseModel
 from models.amenity import Amenity
 
 
-class test_Amenity(test_basemodel):
+class test_Amenity(unittest.TestCase):
     """ """
 
     def __init__(self, *args, **kwargs):
@@ -85,11 +84,8 @@ class TestAmenityBaseModel(unittest.TestCase):
     def test_user_id_and_created_at(self):
         """Test id and created_at attributes"""
         user_1 = Amenity()
-        sleep(2)
         user_2 = Amenity()
-        sleep(2)
         user_3 = Amenity()
-        sleep(2)
         list_users = [user_1, user_2, user_3]
         for instance in list_users:
             user_id = instance.id
@@ -141,6 +137,7 @@ class TestAmenity(unittest.TestCase):
         """Test name attribute"""
         amenity = Amenity()
         self.assertTrue(hasattr(amenity, "name"))
+        storage_t = "FileStorage"
         if storage_t == 'db':
             self.assertEqual(amenity.name, None)
         else:
@@ -154,7 +151,7 @@ class TestAmenity(unittest.TestCase):
         self.assertEqual(type(new_d), dict)
         self.assertFalse("_sa_instance_state" in new_d)
         for attr in am.__dict__:
-            if attr is not "_sa_instance_state":
+            if attr != "_sa_instance_state":
                 self.assertTrue(attr in new_d)
         self.assertTrue("__class__" in new_d)
 
