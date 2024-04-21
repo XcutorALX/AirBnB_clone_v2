@@ -1,8 +1,6 @@
 -- This script sets up the MySQL database for the development environment.
 -- Creates a database named hbnb_dev_Db
 CREATE DATABASE IF NOT EXISTS `hbnb_dev_db`;
--- Uses the database
-USE `hbnb_dev_db`;
 -- Creates a table named `hbnb_dev`
 CREATE USER IF NOT EXISTS 'hbnb_dev'@'localhost' IDENTIFIED BY 'hbnb_dev_pwd';
 -- Grants all privileges on the database hbnd_dev_db to the user hbnb_dev
