@@ -41,12 +41,13 @@ class DBStorage:
         if cls:
             if type(cls) == str:
                 cls = models.classes[cls]
-            for obj in self.__session.query(cls):
+            for obj in self.__session.query(cls).all():
                 objs[obj.__class__.__name__ + '.' + obj.id] = obj
         else:
-            for cls in models.classes.values():
-                for obj in self.__session.query(cls):
-                    objs[obj.__class__.__name__ + '.' + obj.id] = obj
+            for key, cls in models.classes.items():
+                if key != 'BaseModel':
+                    for obj in self.__session.query(cls).all():
+                        objs[obj.__class__.__name__ + '.' + obj.id] = obj
         return objs
     
     def new(self, obj):

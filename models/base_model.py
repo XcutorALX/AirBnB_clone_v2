@@ -8,6 +8,7 @@ import models
 
 Base = declarative_base()
 
+
 class BaseModel:
     """A base class for all hbnb models"""
     id = Column(
@@ -25,6 +26,7 @@ class BaseModel:
         default=datetime.utcnow(),
         nullable=False
         )
+
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
         if not kwargs:
@@ -63,7 +65,7 @@ class BaseModel:
             del dictionary['_sa_instance_state']
 
         return dictionary
-    
+
     @classmethod
     def from_dict(cls, **kwargs):
         """Convert dict into instance"""
@@ -73,7 +75,7 @@ class BaseModel:
             if attr != '__class__':
                 setattr(new, attr, val)
         return new
-    
+
     def delete(self):
         """Delete the current instance from storage"""
         models.storage.delete(self)

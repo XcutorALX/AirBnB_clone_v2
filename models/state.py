@@ -5,6 +5,7 @@ from models.base_model import Base
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 
+
 class State(BaseModel, Base):
     """ State class """
     __tablename__ = 'states'
@@ -14,7 +15,7 @@ class State(BaseModel, Base):
         backref="state",
         cascade="all, delete"
         )
-    
+
     @property
     def cities(self):
         """Getter attribute in case of file storage"""
