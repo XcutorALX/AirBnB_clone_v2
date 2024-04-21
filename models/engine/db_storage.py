@@ -15,6 +15,7 @@ from sqlalchemy.orm import sessionmaker
 from os import getenv
 import models
 
+
 class DBStorage:
     __engine = None
     __session = None
@@ -49,7 +50,7 @@ class DBStorage:
                     for obj in self.__session.query(cls).all():
                         objs[obj.__class__.__name__ + '.' + obj.id] = obj
         return objs
-    
+
     def new(self, obj):
         """
         Adds a new object to the current database session
