@@ -13,7 +13,7 @@ from models.amenity import Amenity
 from models.review import Review
 from sqlalchemy.orm import sessionmaker
 from os import getenv
-from models import classes
+import models
 
 class DBStorage:
     __engine = None
@@ -40,11 +40,11 @@ class DBStorage:
         objs = {}
         if cls:
             if type(cls) == str:
-                cls = classes[cls]
+                cls = models.classes[cls]
             for obj in self.__session.query(cls):
                 objs[obj.__class__.__name__ + '.' + obj.id] = obj
         else:
-            for cls in classes.values():
+            for cls in models.classes.values():
                 for obj in self.__session.query(cls):
                     objs[obj.__class__.__name__ + '.' + obj.id] = obj
         return objs
