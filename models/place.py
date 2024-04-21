@@ -31,11 +31,35 @@ class Place(BaseModel, Base):
     longitude = Column(Float, nullable=True)
     amenity_ids = []
 
+    place_amenity = Table(
+        'place_amenity',
+        Base.metadata,
+        Column(
+            'place_id',
+            String(60),
+            ForeignKey('places.id'),
+            primary_key=True,
+            nullable=False
+            ),
+        Column(
+            'amenity_id',
+            String(60),
+            ForeignKey('amenities.id'),
+            primary_key=True,
+            nullable=False
+            )
+        )
+
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
         reviews = relationship(
             "Review",
             backref="place",
             cascade="all, delete"
+            )
+        amenities = relationship(
+            "Amenity",
+            secondary=place_amenity,
+            viewonly=False
             )
     else:
         @property
@@ -46,3 +70,18 @@ class Place(BaseModel, Base):
             reviews = storage.all(Review)
             return [review for review in reviews.values()
                     if review.place_id == self.id]
+
+        @property
+        def amenities(self):
+            """Getter attribute in case of file storage"""
+            from models import storage
+            from models.amenity import Amenity
+            amenities = storage.all(Amenity)
+            return [amenity for amenity in amenities.values()
+                    if amenity.id in self.amenity_ids]
+
+        @amenities.setter
+        def amenities(self, obj):
+            """Setter attribute in case of file storage"""
+            if type(obj).__name__ == 'Amenity':
+                self.amenity_ids.append(obj.id)
