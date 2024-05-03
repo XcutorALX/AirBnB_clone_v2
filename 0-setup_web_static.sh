@@ -4,13 +4,11 @@
 hostname=$(hostname)
 test_dir="/data/web_static/releases/test/"
 current_link="/data/web_static/current"
-data='<!Doctype html>
-<html>
+data='<html>
 	<head>
-		<title>Dummy Page</title>
 	</head>
 	<body>
-		<h1>Hello World!</h1>
+		Holberton School
 	</body>
 </html>'
 rules="server {
