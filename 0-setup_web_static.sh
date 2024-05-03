@@ -5,11 +5,11 @@ hostname=$(hostname)
 test_dir="/data/web_static/releases/test/"
 current_link="/data/web_static/current"
 data='<html>
-	<head>
-	</head>
-	<body>
-		Holberton School
-	</body>
+  <head>
+  </head>
+    <body>
+      Holberton School
+    </body>
 </html>'
 rules="server {
 	listen 80 default_server;
@@ -18,10 +18,7 @@ rules="server {
 	root /var/www/html;
 
 	index index.html index.htm index.nginx-debian.html;
-	add_header X-Served-By $hostname always;
 	server_name _;
-
-	error_page 404 /404.html;
 
 	location / {
 		try_files \$uri \$uri/ =404;
