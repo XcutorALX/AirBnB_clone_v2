@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # This script sets up a web server for the deployment of web_static
 
-hostname=$(hostname)
 test_dir="/data/web_static/releases/test/"
 current_link="/data/web_static/current"
 data='<html>
