@@ -12,6 +12,9 @@ env.user = "ubuntu"
 env.key_filename = "~/.ssh/id_rda"
 
 def do_deploy(archive_path):
+    """
+    This function copies an archive to a web server and unpacks it
+    """
     if not os.path.exists(archive_path):
         return False
 
