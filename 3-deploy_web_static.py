@@ -3,15 +3,20 @@
 This module contains a do_pack function
 """
 
-from fabric.api import local, env, put, run
+from fabric.api import local, env, put, run, task
 from datetime import datetime
 import os
 
 env.hosts = ["34.232.77.198", "54.237.64.147"]
+env.pack_executed = False
+packed_archive_name = []
 
 
+@task
 def do_pack():
     """Creates a .tgz archive from the contents of the web_static folder."""
+    if env.pack_executed and packed_archive_name:
+        return packed_archive_name[0]
     try:
         local("mkdir -p versions")
 
@@ -20,12 +25,15 @@ def do_pack():
 
         archive_name = "versions/web_static_{}.tgz".format(timestamp)
         local("tar -cvzf {} web_static".format(archive_name))
+        env.pack_executed = True
 
+        packed_archive_name.append(archive_name)
         return archive_name
     except Exception as e:
         return None
 
 
+@task
 def do_deploy(archive_path):
     """
     This function copies an archive to a web server and unpacks it
@@ -51,6 +59,7 @@ def do_deploy(archive_path):
     return True
 
 
+@task
 def deploy():
     """
     This script packs up an archive using do_pack and
