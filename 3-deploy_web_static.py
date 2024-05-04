@@ -23,7 +23,6 @@ def do_pack():
 
         return archive_name
     except Exception as e:
-        print("An error occurred:", e)
         return None
 
 
@@ -32,7 +31,6 @@ def do_deploy(archive_path):
     This function copies an archive to a web server and unpacks it
     """
     if not os.path.exists(archive_path):
-        print("DNE")
         return False
 
     archive_name = os.path.basename(archive_path)
