@@ -24,10 +24,13 @@ def do_pack():
         timestamp = now.strftime("%Y%m%d%H%M%S")
 
         archive_name = "versions/web_static_{}.tgz".format(timestamp)
+        print("Packing web_static to {}".format(archive_name))
         local("tar -cvzf {} web_static".format(archive_name))
         env.pack_executed = True
 
         packed_archive_name.append(archive_name)
+        print("web_static packed: {} -> {}Bytes".format(archive_name,
+              os.path.getsize(archive_name)))
         return archive_name
     except Exception as e:
         return None
