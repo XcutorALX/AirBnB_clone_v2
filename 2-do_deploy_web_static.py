@@ -5,9 +5,8 @@ distributes an archive to your web servers, using the function do_deploy
 
 from fabric.api import env, put, run
 import os
-
-
 env.hosts = ["34.232.77.198", "54.237.64.147"]
+
 
 def do_deploy(archive_path):
     """
@@ -18,7 +17,8 @@ def do_deploy(archive_path):
         return False
 
     archive_name = os.path.basename(archive_path)
-    release_dir = "/data/web_static/releases/{}".format(archive_name.split('.')[0])
+    release_dir = "/data/web_static/releases/{}"\
+        .format(archive_name.split('.')[0])
 
     put(archive_path, '/tmp/')
 
