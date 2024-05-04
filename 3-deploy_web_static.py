@@ -9,6 +9,8 @@ import os
 
 env.hosts = ["34.232.77.198", "54.237.64.147"]
 env.pack_executed = False
+env.user = 'ubuntu'
+env.key_filename = "~/.ssh/id_rsa"
 packed_archive_name = []
 
 
