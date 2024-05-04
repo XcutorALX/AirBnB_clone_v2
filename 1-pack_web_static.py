@@ -6,6 +6,7 @@ This module contains a do_pack function
 from fabric.api import local
 from datetime import datetime
 
+
 def do_pack():
     """Creates a .tgz archive from the contents of the web_static folder."""
     try:
@@ -21,6 +22,7 @@ def do_pack():
     except Exception as e:
         print("An error occurred:", e)
         return None
+
 
 if __name__ == "__main__":
     do_pack()
