@@ -47,7 +47,8 @@ class BaseModel:
                 self.created_at = datetime.now()
                 self.updated_at = datetime.now()
             for key, val in kwargs.items():
-                if "__class__" not in key:
+                if "__class__" not in key and key not in \
+                    ['id', 'created_at', 'updated_at']:
                     setattr(self, key, val)
 
     def __str__(self):

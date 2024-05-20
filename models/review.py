@@ -8,6 +8,9 @@ from sqlalchemy import Column, String, ForeignKey
 class Review(BaseModel, Base):
     """ Review classto store review information """
     __tablename__ = 'reviews'
+    id = getattr(BaseModel, 'id')
+    created_at = getattr(BaseModel, 'created_at')
+    updated_at = getattr(BaseModel, 'updated_at')
     place_id = Column(
         String(60),
         ForeignKey('places.id'),
