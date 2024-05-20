@@ -8,6 +8,6 @@ GRANT ALL PRIVILEGES ON hbnb_dev_db.* TO 'hbnb_dev'@'localhost';
 -- Flushes the privileges
 FLUSH PRIVILEGES;
 -- Grants SELECT on the database performance_Schema to the user hbnb_dev
-GRANT SELECT ON performance_Schema.* TO 'hbnb_dev'@'localhost';
+GRANT SELECT ON performance_schema.* TO 'hbnb_dev'@'localhost';
 -- Flushes the privileges
 FLUSH PRIVILEGES;
