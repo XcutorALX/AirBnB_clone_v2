@@ -1,0 +1,4 @@
+DROP TABLE amenities;
+DROP TABLE cities;
+DROP TABLE states;
+DROP TABLE users;
