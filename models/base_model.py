@@ -43,13 +43,12 @@ class BaseModel:
                                                          '%Y-%m-%dT%H:%M:%S.%f'
                                                          )
             except KeyError:
-                if 'updated_at' not in kwargs:
-                    self.updated_at = datetime.now()
-                else:
-                    self.created_at = datetime.now()
-            if '__class__' in kwargs:
-                del kwargs['__class__']
-            self.__dict__.update(kwargs)
+                self.id = str(uuid.uuid4())
+                self.created_at = datetime.now()
+                self.updated_at = datetime.now()
+            for key, val in kwargs.items():
+                if "__class__" not in key:
+                    setattr(self, key, val)
 
     def __str__(self):
         """Returns a string representation of the instance"""
