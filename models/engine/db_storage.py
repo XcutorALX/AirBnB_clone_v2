@@ -40,7 +40,7 @@ class DBStorage:
 
         objs = {}
         if cls:
-            if type(cls) == str:
+            if type(cls) is str:
                 cls = models.classes[cls]
             for obj in self.__session.query(cls).all():
                 objs[obj.__class__.__name__ + '.' + obj.id] = obj
@@ -77,3 +77,11 @@ class DBStorage:
         Base.metadata.create_all(self.__engine)
         Session = sessionmaker(bind=self.__engine, expire_on_commit=False)
         self.__session = Session()
+
+    def close(self):
+        """
+            call remove() method on the private session attribute
+            (self.__session) tips or close() on the class Session
+        """
+
+        self.__session.close()
