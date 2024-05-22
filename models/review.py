@@ -13,12 +13,12 @@ class Review(BaseModel, Base):
     updated_at = getattr(BaseModel, 'updated_at')
     place_id = Column(
         String(60),
-        ForeignKey('places.id'),
+        ForeignKey('places.id', ondelete='CASCADE', onupdate='CASCADE'),
         nullable=False
         )
     user_id = Column(
         String(60),
-        ForeignKey('users.id'),
+        ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'),
         nullable=False
         )
     text = Column(String(1024), nullable=False)
