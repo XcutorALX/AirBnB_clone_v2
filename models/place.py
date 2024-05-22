@@ -12,12 +12,12 @@ class Place(BaseModel, Base):
     __tablename__ = 'places'
     city_id = Column(
         String(60),
-        ForeignKey('cities.id'),
+        ForeignKey('cities.id', ondelete='CASCADE', onupdate='CASCADE'),
         nullable=False
         )
     user_id = Column(
         String(60),
-        ForeignKey('users.id'),
+        ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'),
         nullable=False
         )
     name = Column(String(128), nullable=False)
@@ -53,7 +53,7 @@ class Place(BaseModel, Base):
         reviews = relationship(
             "Review",
             backref="place",
-            cascade="all, delete"
+            cascade="all, delete-orphan"
             )
         amenities = relationship(
             "Amenity",
