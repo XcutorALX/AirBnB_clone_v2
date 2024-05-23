@@ -12,7 +12,7 @@ class City(BaseModel, Base):
     name = Column(String(128), nullable=False)
     state_id = Column(
         String(60),
-        ForeignKey('states.id'),
+        ForeignKey('states.id', ondelete='CASCADE', onupdate='CASCADE'),
         nullable=False
         )
 
