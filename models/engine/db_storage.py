@@ -24,12 +24,13 @@ class DBStorage:
         """
         Initializes the DBStorage instance
         """
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}?charset=latin1'
                                       .format(getenv('HBNB_MYSQL_USER'),
                                               getenv('HBNB_MYSQL_PWD'),
                                               getenv('HBNB_MYSQL_HOST'),
                                               getenv('HBNB_MYSQL_DB')),
-                                      pool_pre_ping=True)
+                                      pool_pre_ping=True, encoding="latin1",
+                                      connect_args={"charset": "latin1"},)
         if getenv('HBNB_ENV') == 'test':
             Base.metadata.drop_all(self.__engine)
 

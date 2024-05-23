@@ -12,6 +12,9 @@ Base = declarative_base()
 class BaseModel:
     """A base class for all hbnb models"""
     __abstract__ = True
+    __table_args__ = {
+        'mysql_charset': 'latin1'
+    }
 
     id = Column(
         String(60),
@@ -50,7 +53,7 @@ class BaseModel:
                 self.updated_at = datetime.now()
             for key, val in kwargs.items():
                 if "__class__" not in key and key not in \
-                    ['id', 'created_at', 'updated_at']:
+                     ['id', 'created_at', 'updated_at']:
                     setattr(self, key, val)
 
     def __str__(self):

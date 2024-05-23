@@ -46,7 +46,8 @@ class Place(BaseModel, Base):
             ForeignKey('amenities.id'),
             primary_key=True,
             nullable=False
-            )
+            ),
+        mysql_charset='latin1'
         )
 
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
