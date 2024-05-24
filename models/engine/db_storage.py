@@ -24,8 +24,8 @@ class DBStorage:
         """
         Initializes the DBStorage instance
         """
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}?\
-                                      charset=latin1'
+        url = 'mysql+mysqldb://{}:{}@{}/{}?charset=latin1'
+        self.__engine = create_engine(url
                                       .format(getenv('HBNB_MYSQL_USER'),
                                               getenv('HBNB_MYSQL_PWD'),
                                               getenv('HBNB_MYSQL_HOST'),
