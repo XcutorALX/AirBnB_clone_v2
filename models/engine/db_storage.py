@@ -15,7 +15,6 @@ from sqlalchemy.orm import sessionmaker
 from os import getenv
 import models
 
-
 class DBStorage:
     __engine = None
     __session = None

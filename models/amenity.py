@@ -13,7 +13,7 @@ class Amenity(BaseModel, Base):
 
     @staticmethod
     def places_relationship():
-        from models.place_amenity import place_amenity
+        from models.place_amenity import place_amenity, Place
         return relationship("Place",
                             secondary=place_amenity,
                             back_populates="amenities")
