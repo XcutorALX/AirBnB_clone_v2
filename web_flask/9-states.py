@@ -9,7 +9,17 @@ from models import storage
 app = Flask(__name__)
 
 
-@app.route('/cities_by_states', strict_slashes=False)
+@app.route('/states', strict_slashes=False)
+def states_list():
+    """
+        states_list route for flask app
+    """
+
+    return render_template('8-cities_by_states.html',
+                           states=storage.all("State"))
+
+
+@app.route('/states/<id>', strict_slashes=False)
 def states_list():
     """
         states_list route for flask app

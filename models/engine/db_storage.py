@@ -15,6 +15,7 @@ from sqlalchemy.orm import sessionmaker
 from os import getenv
 import models
 
+
 class DBStorage:
     __engine = None
     __session = None
@@ -23,7 +24,8 @@ class DBStorage:
         """
         Initializes the DBStorage instance
         """
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}?charset=latin1'
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}?\
+                                      charset=latin1'
                                       .format(getenv('HBNB_MYSQL_USER'),
                                               getenv('HBNB_MYSQL_PWD'),
                                               getenv('HBNB_MYSQL_HOST'),
